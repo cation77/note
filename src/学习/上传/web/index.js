@@ -1,5 +1,7 @@
 import pLimit from 'p-limit';
 
+// 参考[字节跳动面试官：请你实现一个大文件上传和断点续传](https://juejin.cn/post/6844904046436843527)
+
 // 并发控制
 const limit = pLimit(5);
 
@@ -8,6 +10,8 @@ const limit = pLimit(5);
 // 只有 FileReader 才会将文件读取到内存中
 
 const SIZE = 10 * 1024 * 1024
+
+const filename = 'filename'
 
 function createFileChunk(file, size = SIZE) {
   let cur = 0
@@ -20,12 +24,14 @@ function createFileChunk(file, size = SIZE) {
   return fileChunks
 }
 
-function uploadFile(fileChunks) {
-  const requestList = fileChunks.map(file => {
+async function uploadFile(fileChunks) {
+  const hash = await calculateHash(fileChunks)
+  const requestList = fileChunks.map(({ file }, index) => {
     const formData = new FormData();
-    formData.append("chunk", chunk);
+    formData.append("chunk", file);
     formData.append("hash", hash);
-    formData.append("filename", this.container.file.name);
+    formData.append("chunkHash", `${hash}-${index}`);
+    formData.append("filename", filename);
     return limit(() => requestUpload({ url: "http://localhost:3000", data: formData }))
   })
   return requestList
@@ -44,10 +50,14 @@ async function mergeFile() {
 }
 
 function calculateHash(fileChunks) {
-  const worker = new Worker('/hash.js')
-  worker.postMessage({ fileChunks })
-  worker.onmessage = message => {
-    const { percentage, hash } = message.data
-
-  }
+  return new Promise(resolve => {
+    const worker = new Worker('/hash.js')
+    worker.postMessage({ fileChunks })
+    worker.onmessage = message => {
+      const { percentage, hash } = message.data
+      if (hash) {
+        resolve(hash)
+      }
+    }
+  })
 }
