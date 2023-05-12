@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import pLimit from 'p-limit';
-import { useUpload } from '@/utils/upload';
+// import pLimit from '../../../pLimit';
+import { useUpload } from './upload';
 
 const limit = pLimit(5);
 const chunkSize = 20 * 1024 * 1024;
