@@ -11,7 +11,7 @@ title: GitHub Actions 入门
 3. `step` (步骤): 每个 `job` 由多个 `step` 构成，一步步完成
 4. `action` (动作): 每个 `step` 可以依次执行一个或多个命令 `action`
 
-![关系图谱](https://docs.github.com/assets/cb-25535/mw-1000/images/help/images/overview-actions-simple.webp)
+![关系图谱](../../assets/overview-actions-simple.webp)
 
 ## workflow 文件
 
@@ -25,44 +25,63 @@ workflow 文件采用[yaml 格式](https://learnxinyminutes.com/docs/yaml/)，�
 当工程有提交代码至 `main` 分支时，这个 `workflow` 会执行，并通过 `JamesIves/github-pages-deploy-action@v4` 部署到 github pages
 
 ```yml
-name: GitHub Actions Deploy
-on:
-  push:
+name: GitHub Actions Demo # 为这个 actions 命名，忽略此字段，则默认会设置为 workflow 文件名
+on: # 此CI/CD触发时的事件
+  push: # 在代码提交时自动触发，同样也可以指定在 打 tag、release、pull_request、定时、某个文件变动、仓库被start 时触发
     branches:
-      - main
+      - main # 代码提交 main 分支会执行
 
 permissions:
   contents: write
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
+jobs: # CI 要执行的任务
+  build-and-deploy: # 要执行任务的名字这个名字可以随便改 job1、job2... 都行
+    runs-on: ubuntu-latest # 当前任务运行环境 目前支持 Windows、Ubuntu、MacOs
+    steps: # 在 ubuntu-latest 下运行以下步骤
+      # 下载源码
+      # uses 的作用是使用另一个仓库的代码，如下
+      # uses: actions/checkout@master 使用 actions 用户的 checkout 仓库的 v3
       - uses: actions/checkout@v3 # 第一步，下载代码仓库
 
-      - name: Install pnpm
+      # 安装 pnpm
+      - name: Install pnpm # 步骤的名字，可以不写
         uses: pnpm/action-setup@v2.2.4
-        with:
+        with: # 给使用的另一个仓库代码传递参数
           version: 7
 
+      # 设置 node 版本
       - name: Set node version to 18
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "pnpm"
 
+      # 打包构建
       - name: Install and Build
+        # run 为在系统在执行该命令
         run: |
           pnpm install
           pnpm run build
 
+      # 命名这个任务为发布 Deploy
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist # The folder the action should deploy.
           clean: true
-
 ```
+
+## GitHub Secrets 变量配置
+
+> 在 CI 的过程中可能会使用到敏感信息: 账户，密码等, 而 CI 文件在项目中是开发者可见的，存在巨大风险。
+>
+为了能在 CI 中使用这些信息需要配置一下 GitHub Secrets
+
+1. 进入仓库 `Settings tab` 页，选择 `Secrets and variables` 选项 `Actions` 即可对 `Secrets` 信息进行管理
+  ![Settings tab](../../assets/gitAction.png)
+
+2. 点击 `New repository secret` 按钮新增 `Secrets`
+   ![New secret](../../assets/addSecret.png)
 
 ## 部署至 github pages
 
@@ -76,3 +95,4 @@ jobs:
 4. [github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action)
 5. [学会用 Github Action 入门](https://juejin.cn/post/7113562222852309023)
 6. [快速编写一个自己的 Github Action](https://juejin.cn/post/7191357386139893817)
+7. [使用 Github Actions 实现 CI/CD](https://juejin.cn/post/7044157768445460487)
