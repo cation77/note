@@ -39,9 +39,9 @@ export function isSameVNodeType(n1: VNode, n2: VNode): boolean {
 |   8   |      ❎      |        ✅        |      ✅      |        ❎        |
 |   9   |      ✅      |        ❎        |      ✅      |        ❎        |
 
-1. 头头比较，从头遍历比较新旧队列，节点不符合 `isSameVNodeType` 则跳出循环
-2. 尾尾比较，从尾遍历比较新旧队列，节点不符合 `isSameVNodeType` 则跳出循环
-3. 添加新节点，经过步骤1、2比较，旧队列不存在节点且新队列还有节点，则 `mount` 剩余新节点
+1. 头头比较，从头遍历比较新旧队列，相同节点则 `patch`，节点不符合 `isSameVNodeType` 则跳出循环
+2. 尾尾比较，从尾遍历比较新旧队列，相同节点则 `patch`，节点不符合 `isSameVNodeType` 则跳出循环
+3. 添加新节点，经过步骤1、2比较，旧队列不存在节点且新队列还有节点，则 `patch` 剩余新节点
 4. 删除旧节点，经过步骤1、2比较，旧队列存在节点且新队列为空，则 `unmount` 旧队列剩余节点
 5. 经过步骤1、2比较，新旧队列都存有节点，进行复杂比较，找出需要新增、更新、删除和复用节点
    1. 生成 key Map：`keyToNewIndexMap`，用于新节点 `key` 映射当前节点在新队列中的 `index`
@@ -49,7 +49,29 @@ export function isSameVNodeType(n1: VNode, n2: VNode): boolean {
       1. 当旧节点没有匹配到新节点 `newIndex`，则 `unmount` 此旧节点
       2. 匹配的新节点还需要根据 `newIndex >= maxNewIndexSoFar` 判断是否有移动
       3. 当新队列的所有节点都匹配完，剩余旧节点要被 `unmount`
-   3. 通过 `toBePatched` 遍历新队列，当新节点对应 `newIndexToOldIndexMap` 值为 `0`，则新增该节点，当 `newIndexToOldIndexMap` 有值且 `moved` 为正则该节点需要 `move`
+   3. 通过 `toBePatched` 遍历新队列，当新节点对应 `newIndexToOldIndexMap` 值为 `0`，则 `patch` 该节点，当 `newIndexToOldIndexMap` 有值且 `moved` 为正则该节点需要 `move`
+
+## patch
+
+1. 当新旧节点完全相同则不用更新
+2. 当旧节点存在且不符合 `isSameVNodeType`，则需要`unmount`旧节点
+3. 当新节点的 `patchFlag` 为 `PatchFlags.BAIL` 时，退出优化模式 `optimized = false`
+4. 判断节点的 `type`
+   1. `Text` 类型调用 `processText`
+   2. `Comment` 类型调用 `processCommentNode`
+   3. `Static` 类型且旧节点不存在，调用 `mountStaticNode`
+   4. `Fragment` 类型调用 `processFragment`
+   5. `type` 类型是其他值的，需要判断节点的 `shapeFlag`
+      1. `ShapeFlags.ELEMENT` 调用 `processElement`
+      2. `ShapeFlags.COMPONENT` 调用 `processComponent`
+
+## unmount
+
+1. 移除节点的 ref
+2. 节点的 `shapeFlag & ShapeFlags.COMPONENT_SHOULD_KEEP_ALIVE` 则 `deactivate` 该节点并退出 `unmount`方法
+3. 节点有 `props.onVnodeBeforeUnmount`，则执行 `invokeVNodeHook`
+4. 节点的 `shapeFlag & ShapeFlags.COMPONENT` 则执行 `unmountComponent`
+5.
 
 ## 源码
 
