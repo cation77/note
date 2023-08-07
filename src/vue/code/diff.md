@@ -69,9 +69,10 @@ export function isSameVNodeType(n1: VNode, n2: VNode): boolean {
 
 1. 移除节点的 ref
 2. 节点的 `shapeFlag & ShapeFlags.COMPONENT_SHOULD_KEEP_ALIVE` 则 `deactivate` 该节点并退出 `unmount`方法
-3. 节点有 `props.onVnodeBeforeUnmount`，则执行 `invokeVNodeHook`
+3. 节点在被 `unmount`前，如果节点 `shouldInvokeVnodeHook && props.onVnodeBeforeUnmount`，则执行 `invokeVNodeHook`
 4. 节点的 `shapeFlag & ShapeFlags.COMPONENT` 则执行 `unmountComponent`
-5.
+5. 其他类型的节点，如果有指令 `shouldInvokeDirs`，则先执行 `invokeDirectiveHook`，然后执行对应卸载节点的方法
+6. 卸载完成，节点有 `vnodeHook` 则执行 `invokeVNodeHook`，节点有 `shouldInvokeDirs`，则执行 `invokeDirectiveHook`
 
 ## 源码
 
