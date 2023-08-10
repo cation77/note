@@ -28,3 +28,7 @@ title: 学习笔记
 ## algo
 
 - [LeetCode-Cookbook](https://books.halfrost.com/leetcode/)
+
+## 规范
+
+- [语义化版本](https://semver.org/lang/zh-CN/)
