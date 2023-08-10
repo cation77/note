@@ -12,6 +12,7 @@ title: 学习笔记
 - [typescrip 官网](typescriptlang.org)
 - [TypeScript4 官方文档翻译](https://ts.yayujs.com/)
 - [type-challenges](https://github.com/type-challenges/type-challenges)
+- [阮一峰 TypeScript 教程](https://wangdoc.com/typescript/)
 
 ## react
 
