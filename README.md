@@ -29,6 +29,22 @@ title: 学习笔记
 
 - [LeetCode-Cookbook](https://books.halfrost.com/leetcode/)
 
+## linux
+
+## 数据库
+
+- [SQL 语法速成手册](https://juejin.cn/post/6844903790571700231)
+- [MySQL 教程](https://www.begtut.com/mysql/mysql-intro.html)
+
 ## 规范
 
 - [语义化版本](https://semver.org/lang/zh-CN/)
+- [中文技术文档的写作规范](https://github.com/ruanyf/document-style-guide)
+
+## JAVA
+
+- [JavaGuide](https://github.com/Snailclimb/JavaGuide)
+
+## Markdown
+
+- [Markdown 入门](https://markdown.com.cn/intro.html)
