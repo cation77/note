@@ -11,7 +11,7 @@ title: GitHub Actions 入门
 3. `step` (步骤): 每个 `job` 由多个 `step` 构成，一步步完成
 4. `action` (动作): 每个 `step` 可以依次执行一个或多个命令 `action`
 
-![关系图谱](../../assets/overview-actions-simple.webp)
+![关系图谱](../assets/git/overview-actions-simple.webp)
 
 ## workflow 文件
 
@@ -78,10 +78,10 @@ jobs: # CI 要执行的任务
 为了能在 CI 中使用这些信息需要配置一下 GitHub Secrets
 
 1. 进入仓库 `Settings tab` 页，选择 `Secrets and variables` 选项 `Actions` 即可对 `Secrets` 信息进行管理
-  ![Settings tab](../../assets/gitAction.png)
+  ![Settings tab](../assets/git/gitAction.png)
 
 2. 点击 `New repository secret` 按钮新增 `Secrets`
-   ![New secret](../../assets/addSecret.png)
+   ![New secret](../assets/git/addSecret.png)
 
 ## 部署至 github pages
 
