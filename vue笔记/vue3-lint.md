@@ -402,6 +402,8 @@ pnpm add husky lint-staged -D
 },
 ```
 
+当 `lint-staged` 失败后文件丢失？可尝试通过 `git stash pop` 找回
+
 ### 新增 husky 钩子
 
 使用 husky 命令添加 pre-commit 钩子
