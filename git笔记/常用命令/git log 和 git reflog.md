@@ -1,10 +1,10 @@
 ---
-title: git log 和 reflog 命令
+title: git log 和 git reflog 命令
 ---
 
 ## git log
 
-> 不能察看已经删除了的commit记录
+> 不能查看已经删除了的commit记录
 
 ### 常用选项
 
