@@ -27,6 +27,7 @@ title: 学习笔记
 
 ## algo
 
+- [Hello 算法](https://www.hello-algo.com/)
 - [LeetCode-Cookbook](https://books.halfrost.com/leetcode/)
 
 ## linux
