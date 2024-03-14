@@ -2,8 +2,8 @@
 title: win 使用 nvm 管理 node版本
 ---
 
->当我们做项目开发时，需要切换不同 `node` 版本，对于 `window` 平台管理 `node` 版本，可以使用 `[nvm-windows](https://github.com/coreybutler/nvm-windows)` 管理。
-> 注意 `nvm-windows` 与 `[nvm](https://github.com/nvm-sh/nvm)` 不同。尽管双方存在差异，但在具体使用上，基本差不多
+>当我们做项目开发时，需要切换不同 `node` 版本，对于 `window` 平台管理 `node` 版本，可以使用 [nvm-windows](https://github.com/coreybutler/nvm-windows)`管理。
+> 注意`nvm-windows` 与 [nvm](https://github.com/nvm-sh/nvm) 不同。尽管双方存在差异，但在具体使用上，基本差不多
 
 ## 安装 nvm-windows
 
@@ -13,6 +13,7 @@ title: win 使用 nvm 管理 node版本
 
 1. 安装失败，重新执行`nvm-setup.exe`安装
 2. 配置环境变量（建议系统默认）
+
 |  系统变量   |                               值                               |
 | :---------: | :------------------------------------------------------------: |
 |  NVM_HOME   | C:\\Users\\Administrator\\AppData\\Roaming\\nvm（nvm安装位置） |
