@@ -1,6 +1,11 @@
 ---
 title: git ssh 秘钥
 ---
+## 检查是否生成了 ssh 秘钥
+
+```shell
+ssh -T git@github.com
+```
 
 ## 生成秘钥
 
