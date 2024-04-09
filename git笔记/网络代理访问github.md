@@ -19,7 +19,7 @@ Failed to connect to github.com port 443 : Timed out
 
 获取电脑的代理：打开电脑的 `设置`，选择 `网络和Internet`，选择 `代理`
 
-![网络代理](../assets/net-proxy.png)
+![网络代理](../assets/git/net-proxy.png)
 
 ```shell
 # 注意修改成自己系统代理的 IP 地址和端口号

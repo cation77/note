@@ -27,6 +27,12 @@ git config --global i18n.commitencoding utf8
 git config --global i18n.logoutputencoding gbk
 ```
 
+- 延长克隆的时间
+  
+ ```shell
+git config --global http.postBuffer 600000
+```
+
 ### 取消全局配置
 
 ```shell
