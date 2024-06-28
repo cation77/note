@@ -2,6 +2,13 @@
 title: 学习笔记
 ---
 
+## 学习站点
+
+1. [MDN](https://developer.mozilla.org/zh-CN/docs/learn)
+2. [devdocs](https://devdocs.io/)
+3. [frontendmasters](https://frontendmasters.com/learn/)
+4. [stackoverflow](https://stackoverflow.com/)
+
 ## JS进阶
 
 - [阮一峰 ES6 入门教程](https://es6.ruanyifeng.com/)
@@ -20,6 +27,10 @@ title: 学习笔记
 - [Build your own React](https://pomb.us/build-your-own-react/)
 - [卡颂 React 技术揭秘](https://react.iamkasong.com/)
 - [冴羽 React 基础与进阶](https://juejin.cn/column/7142674773930147853)
+
+### Next.js
+
+- [Learn Next.js 中文教程](https://qufei1993.github.io/nextjs-learn-cn/)
 
 ## vue
 
@@ -45,6 +56,10 @@ title: 学习笔记
 ## JAVA
 
 - [JavaGuide](https://github.com/Snailclimb/JavaGuide)
+
+## Python
+
+- [Python 教程](https://docs.python.org/zh-cn/3/tutorial/index.html)
 
 ## Markdown
 
