@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "description": "学习笔记",
   "main": "main.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "promiseA": "promises-aplus-tests promise/promise"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
 }
