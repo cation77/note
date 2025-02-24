@@ -14,3 +14,8 @@ title: OSI 网络七层模型
 > 实际应用过程中，五层协议结构里面是没有表示层和会话层的。应该说它们和应用层合并了。
 
 ![OSI 网络七层模型](../assets/net/osi7.png)
+
+## 参考
+
+1. [OSI 7层模型和TCP/IP 4层模型](https://zhuanlan.zhihu.com/p/32059190)
+2. [为什么 MAC 地址不需要全球唯一](https://draveness.me/whys-the-design-non-unique-mac-address/)
