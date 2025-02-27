@@ -48,6 +48,11 @@ int binarySearch(int[] nums, int target){
 }
 ```
 
+- 因为 right = nums.length - 1，搜索空间 `[left, right]`
+- 所以 while 循环判断 left <= right
+- 搜索空间分半时: left = mid + 1 以及 right = mid - 1
+- 跳出循环时，left = right + 1，此时 left > right
+
 ## 模板二
 
 ```cpp
@@ -91,6 +96,11 @@ int binarySearch(int[] nums, int target){
   return -1;
 }
 ```
+
+- 因为 right = nums.length，搜索空间 `[left, right)`
+- 所以 while 循环判断 left < right
+- 搜索空间分半时: left = mid + 1 以及 right = mid
+- 跳出循环时，left = right
 
 ## 参考
 
