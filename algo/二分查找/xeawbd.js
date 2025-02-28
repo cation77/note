@@ -23,3 +23,27 @@ function findMin(nums) {
   }
   return nums[left];
 }
+
+/**
+ * 二分法模板一
+ * 排序数组旋转后，可能还是原数组，也可能分成2个子升序数组
+ * 通过比较 nums[mid] 和 nums[len - 1] 最后一个元素
+ *
+ */
+
+function findMin1(nums) {
+  const len = nums.length;
+  let left = 0;
+  let right = len - 1;
+  let res = -1;
+  while (left <= right) {
+    const mid = left + Math.floor((right - left) / 2);
+    if (nums[mid] <= nums[len - 1]) {
+      res = mid;
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+  return nums[res];
+}
