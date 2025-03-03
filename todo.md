@@ -16,6 +16,11 @@ title: todo list
 7. [Vue Draggable](https://github.com/SortableJS/vue.draggable.next)
 8. [VueRequest](https://github.com/AttoJS/vue-request)
 
+## 功能
+
+1. [小红书的瀑布流虚拟列表](https://juejin.cn/post/7327971289743278121)
+2. [ue实现预览编辑ppt、word、pdf、excel-onlyOffice](https://juejin.cn/post/7374224361559261218)
+
 ### 参考
 
 1. [2025 最值得学习10 个 Vue3 库](https://mp.weixin.qq.com/s/7Lnvym3MSZZR7hlqjJoFjw)
