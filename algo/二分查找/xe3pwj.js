@@ -18,6 +18,7 @@
 
 /**
  * 数组排序后双指针遍历
+ * 如果已经排好序, 用双指针，时间复杂度O(n + m), 空间 O(1)
  */
 var intersect = function (nums1, nums2) {
   nums1.sort((a, b) => a - b);
@@ -40,3 +41,31 @@ var intersect = function (nums1, nums2) {
   }
   return res;
 };
+
+/**
+ * 哈希表
+ * 时间复杂度 O(n + m), 空间复杂度 O(min(n, m))
+ */
+function intersect(nums1, nums2) {
+  if (nums1.length > nums2.length) {
+    [nums1, nums2] = [nums2, nums1];
+  }
+
+  const hash = {};
+  const res = [];
+  for (let i of nums1) {
+    if (hash[i]) {
+      hash[i] += 1;
+    } else {
+      hash[i] = 1;
+    }
+  }
+  for (let j of nums2) {
+    if (hash[j] > 0) {
+      res.push(j);
+      hash[j] -= 1;
+    }
+  }
+
+  return res;
+}
