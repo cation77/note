@@ -42,3 +42,25 @@ var oddEvenList = function (head) {
   odd.next = evenHead;
   return head;
 };
+
+var oddEvenList = function (head) {
+  let oddHead = { val: null, next: null };
+  let oddTail = oddHead;
+  let evenHead = { val: null, next: null };
+  let evenTail = evenHead;
+  let isOdd = true;
+  while (head) {
+    if (isOdd) {
+      oddTail.next = head;
+      oddTail = oddTail.next;
+    } else {
+      evenTail.next = head;
+      evenTail = evenTail.next;
+    }
+    head = head.next;
+    isOdd = !isOdd;
+  }
+  oddTail.next = evenHead.next;
+  evenTail.next = null;
+  return oddHead.next;
+};
